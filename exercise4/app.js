@@ -74,22 +74,21 @@ class App {
   shipArrangement(player, shipCount, maxShipLength) {
     for (let i = 1; i <= shipCount; i++) {
       const input = prompt(
-        `Введите параметры корабля для ${player.getName} в таком формате: количество длина x,y ориентация:`
+        `Введите параметры корабля для ${player.getName} в таком формате: длина x,y ориентация:`,
       );
       const parts = input.split(" ");
-      shipCount = parseInt(parts[0]);
-      const shipLength = parseInt(parts[1]);
+      const shipLength = parseInt(parts[0]);
 
       if (length > maxShipLength) {
         alert(
-          `Ошибка! Длина корабля (${length}) превышает максимальную допустимую (${maxShipLength})`
+          `Ошибка! Длина корабля (${length}) превышает максимальную допустимую (${maxShipLength})`,
         );
         i--;
         continue;
       }
 
-      const [x, y] = parts[2].split(",").map(Number);
-      const orientation = parseInt(parts[3]);
+      const [x, y] = parts[1].split(",").map(Number);
+      const orientation = parseInt(parts[2]);
 
       // Автоматическое имя корабля
       const shipName = `Корабль №${i}`;
@@ -102,7 +101,7 @@ class App {
         y >= player.getBoardSize
       ) {
         alert(
-          `Координаты должны быть в диапазоне 0-${player.getBoardSize - 1}!`
+          `Координаты должны быть в диапазоне 0-${player.getBoardSize - 1}!`,
         );
         i--;
         continue;
@@ -112,7 +111,7 @@ class App {
         shipName,
         shipLength,
         orientation,
-        { x, y }
+        { x, y },
       );
 
       // if (placementResult) {
@@ -127,7 +126,7 @@ class App {
       // }
 
       console.log(
-        `${player.getName} ${shipCount} ${maxShipLength} ${x},${y} ${orientation}`
+        `${player.getName} ${maxShipLength} ${x},${y} ${orientation}`,
       );
     }
   }
@@ -139,7 +138,7 @@ class App {
     this.shipArrangement(
       this.firstPlayer,
       this.getMaxShips,
-      this.getMaxLengthShip
+      this.getMaxLengthShip,
     );
     const secondPlayerName = prompt("Введите имя второго игрока:");
     const secondPlayer = new Player(secondPlayerName, this.boardSize);
@@ -147,7 +146,7 @@ class App {
     this.shipArrangement(
       this.secondPlayer,
       this.getMaxShips,
-      this.getMaxLengthShip
+      this.getMaxLengthShip,
     );
 
     this.gameLoop();
@@ -169,14 +168,14 @@ class App {
 
       if (hit) {
         console.log(
-          `${currentPlayer.getName} попал в (${attack.x},${attack.y})!`
+          `${currentPlayer.getName} попал в (${attack.x},${attack.y})!`,
         );
 
         // Проверяем, не потоплен ли корабль
         const cell = attack.opponent.board.grid[attack.y][attack.x];
         if (cell && cell.ship && cell.ship.isSunk()) {
           console.log(
-            `${currentPlayer.getName} потопил корабль "${cell.ship.getName}"!`
+            `${currentPlayer.getName} потопил корабль "${cell.ship.getName}"!`,
           );
         }
       } else {

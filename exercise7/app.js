@@ -75,11 +75,10 @@ class App {
   shipArrangement(player, shipCount, maxShipLength) {
     for (let i = 1; i <= shipCount; i++) {
       const input = prompt(
-        `Введите параметры корабля для ${player.getName} в таком формате: количество длина x,y ориентация:`,
+        `Введите параметры корабля для ${player.getName} в таком формате: длина x,y ориентация:`,
       );
       const parts = input.split(" ");
-      const inputShipCount = parseInt(parts[0]);
-      const shipLength = parseInt(parts[1]);
+      const shipLength = parseInt(parts[0]);
 
       if (shipLength > maxShipLength) {
         alert(
@@ -89,8 +88,8 @@ class App {
         continue;
       }
 
-      const [x, y] = parts[2].split(",").map(Number);
-      const orientation = parseInt(parts[3]);
+      const [x, y] = parts[1].split(",").map(Number);
+      const orientation = parseInt(parts[2]);
 
       const shipName = `Корабль №${i}`;
 
@@ -117,7 +116,7 @@ class App {
 
       if (placementResult) {
         console.log(
-          `${player.getName} ${inputShipCount} ${maxShipLength} ${x},${y} ${orientation}`,
+          `${player.getName} ${maxShipLength} ${x},${y} ${orientation}`,
         );
       } else {
         alert("Невозможно разместить корабль в этой позиции!");

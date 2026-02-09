@@ -30,7 +30,7 @@ class Player {
     const placementResult = this.board.placeShip(
       ship,
       startPosition.x,
-      startPosition.y
+      startPosition.y,
     );
 
     return placementResult;
@@ -40,11 +40,6 @@ class Player {
     const input = prompt("Введите координаты X и Y через пробел для атаки:");
     const [x, y] = input.split(" ").map(Number);
 
-    // const xInput = prompt("Введите координаты X для атаки:");
-    // const yInput = prompt("Введите координаты Y для атаки:");
-    // const x = parseInt(xInput);
-    // const y = parseInt(yInput);
-
     if (
       x < 0 ||
       x >= opponent.getBoardSize ||
@@ -52,7 +47,7 @@ class Player {
       y >= opponent.getBoardSize
     ) {
       alert(
-        `Координаты должны быть в диапазоне 0-${opponent.getBoardSize - 1}!`
+        `Координаты должны быть в диапазоне 0-${opponent.getBoardSize - 1}!`,
       );
     }
 
